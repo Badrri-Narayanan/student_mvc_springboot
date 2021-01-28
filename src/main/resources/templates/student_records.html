@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html 	xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link th:href="@{/styles/cssandjs/student_record.style.css}" rel="stylesheet" />
+<script th:src="|@{/styles/cssandjs/student_records.js}|"></script>
+<meta charset="ISO-8859-1"></meta>
+<title>Student Record Viewer</title>
+</head>
+<body>
+	<div class="container">
+		<a href="/logout" id="logout-button" class="btn btn-danger">Logout</a>
+		<h1>Student Details</h1>
+		<h3>Welcome, <span sec:authentication="name"></span></h3>
+    	<h4>You have the following roles : <span sec:authentication="principal.authorities"></span></h4>
+    	<div sec:authorize="hasAnyRole('ADMIN','PRINCIPAL')">
+    		<button onclick="window.location.href='/add_student'" class="btn btn-primary">Add new Student</button>
+    	</div>
+		<br/><br/>
+		<div class="table-responsive">
+			<table class="table table-hover table-striped">
+				<tr>
+					<th>ID</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Email</th>
+					<th></th>
+				</tr>
+				<tr th:each="student : ${students}">
+					<td><span th:text="${student.id}"></span></td>
+					<td><span th:text="${student.firstName}"></span></td>
+					<td><span th:text="${student.lastName}"></span></td>
+					<td><span th:text="${student.email}"></span></td>
+					<td>
+						<a th:href= "@{/edit_student/{id}(id=${student.id})}" class="btn btn-warning" ><i class="fa fa-edit"></i></a>
+						<span sec:authorize="hasRole('ADMIN')">
+						<a th:href="@{/remove_student/{id}(id=${student.id})}" onclick="return remove_student();" class="btn btn-danger" ><i class="fa fa-trash"></i></a>
+						</span>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

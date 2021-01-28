@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link th:href="@{/styles/cssandjs/student_record.style.css}" rel="stylesheet" />
+<head>
+<meta charset="ISO-8859-1">
+<title>Student Viewer</title>
+</head>
+<body>
+	<div class="container">
+		<h1>Student Record Editor</h1>
+		<a href="/logout" id="logout-button" class="btn btn-danger">Logout</a>
+		<form method="POST" th:object="${student}" th:action="@{/save_student}">
+			<div class="form-group">
+				<input type="hidden" name="student_id" th:field="*{id}" th:value="${student.id}" />
+				<p><strong>First Name :</strong><input class="form-control" th:field="*{firstName}" name="first_name" th:value="${student.firstName}" required/></p>
+				<p><strong>Last  Name :</strong><input class="form-control" th:field="*{lastName}" name="last_name" th:value="${student.lastName}" required></p>
+				<p><strong>Email ID   :</strong><input class="form-control" th:field="*{email}" name="email" th:value="${student.email}" required></p>
+				<div>
+					<button type="submit" class="btn btn-default">Submit</button>
+				  	<a href="/student" class="btn btn-default" >Cancel</a>
+				</div>
+		  	</div>
+		</form>
+	</div>
+</body>
+</html>

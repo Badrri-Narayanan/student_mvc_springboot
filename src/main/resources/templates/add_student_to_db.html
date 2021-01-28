@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link th:href="@{/styles/cssandjs/student_record.style.css}" rel="stylesheet" />
+<head>
+<meta charset="ISO-8859-1">
+<title>Add new Student</title>
+</head>
+<body>
+	<div class="container">
+		<h1>Add new Student</h1>
+		<a href="/logout" id="logout-button" class="btn btn-danger">Logout</a>
+		<form method="POST" th:object="${student}" th:action="@{/save_student}">
+			<div class="form-group">
+				<p><strong>First Name :</strong><input class="form-control" th:field="*{firstName}" name="first_name" required/></p>
+				<p><strong>Last  Name :</strong><input class="form-control" th:field="*{lastName}" name="last_name" required/></p>
+				<p><strong>Email ID   :</strong><input class="form-control" th:field="*{email}" name="email" required/></p>
+			  	<div>
+					<button type="submit" class="btn btn-default">Submit</button>
+				  	<a href="/student" class="btn btn-default" >Cancel</a>
+				</div>
+		  	</div>
+		</form>
+		<h4><a href="/student">Back to Student Records</a></h4>
+	</div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html 	xmlns:th="http://www.thymeleaf.org" >
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link th:href="@{/styles/cssandjs/student_record.style.css}" rel="stylesheet" />
+<title>Welcome to homepage</title>
+</head>
+<body>
+	<div class="container">
+		<h1>Welcome to Spring MVC</h1>
+		<div sec:authorize="isAuthenticated()">
+            .<a th:href="@{/logout}" id="logout-button" class="btn btn-primary">Logout</a>
+        </div>
+		<div sec:authorize="isAnonymous()">
+			<a th:href="@{/login}" id="login-button" class="btn btn-primary">Login</a>
+		</div>
+		<h3><a th:href="@{/student}">Student Details</a></h3>
+	</div>
+</body>
+</html>
