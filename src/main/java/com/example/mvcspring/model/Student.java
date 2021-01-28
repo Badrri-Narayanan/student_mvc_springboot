@@ -3,19 +3,17 @@ package com.example.mvcspring.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name="student")
 public class Student {
 
 	@Id
-	@Column(name="id")
-	@GenericGenerator(name="hilo-strategy", strategy = "hilo")
-	@GeneratedValue(generator = "hilo-strategy")
+	@Column(name="id", updatable = false, nullable = false)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int id;
 	
 	@Column(name="first_name")
