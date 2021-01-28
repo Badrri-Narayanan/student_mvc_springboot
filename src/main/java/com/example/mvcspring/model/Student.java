@@ -106,4 +106,7 @@ public class Student {
 		return true;
 	}
 	
+	public Student() {
+	}
+	
 }
