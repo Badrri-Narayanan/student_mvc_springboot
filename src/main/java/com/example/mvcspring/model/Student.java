@@ -3,9 +3,10 @@ package com.example.mvcspring.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name="student")
@@ -13,7 +14,8 @@ public class Student {
 
 	@Id
 	@Column(name="id")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GenericGenerator(name="hilo-strategy", strategy = "hilo")
+	@GeneratedValue(generator = "hilo-strategy")
 	private int id;
 	
 	@Column(name="first_name")
