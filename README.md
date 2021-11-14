@@ -4,6 +4,10 @@ This is my Spring boot MVC project. It uses Thymeleaf for Front-end and it is se
 
  username |  password   
 ----------+------------
- Abdul    | kalam 
+
+ Abdul    | kalam
+ 
  Admin    | password123
+
  Badrri   | global123
+
